@@ -22,7 +22,6 @@ import { firstConversation } from './routes/chat.routes.js';
 
 
 const app = express();
-const cors = require("cors");
 
 const port = process.env.PORT || 3000;
 const corsOptions = {
