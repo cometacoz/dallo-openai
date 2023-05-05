@@ -1,5 +1,8 @@
 'use strict';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { Configuration, OpenAIApi } from 'openai';
 
 class ChatController {

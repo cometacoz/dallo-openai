@@ -32,5 +32,4 @@
  *                 answer:
  *                   type: string
  */
-
-export const firstConversation = (req, res) => req.container.cradle.ChatController.firstConversation(req, res);
+export const conversation = (req, res) => req.container.cradle.ChatController.conversation(req, res);

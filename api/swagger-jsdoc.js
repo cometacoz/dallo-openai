@@ -9,7 +9,7 @@ const swaggerOptions = {
         servers: [
             {
                 url: 'http://localhost:4000',
-                url: 'https://dallo-openai-production.up.railway.app/'
+                // url: 'https://dallo-openai-production.up.railway.app/'
             },
         ],
     },

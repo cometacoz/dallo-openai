@@ -1,15 +1,21 @@
-// THIS IS JUST A MOCK DATABASE
-class Database {
-    constructor() {
-        this.data = {
-            1: { name: 'Alice' },
-            2: { name: 'Bob' }
-        };
-    }
+import { PrismaClient } from '@prisma/client';
 
-    getUser(id) {
-        return this.data[id];
-    }
+const prisma = new PrismaClient();
+async function main() {
+    // Connect the client
+    await prisma.$connect();
+};
+
+main()
+    .then(async () => {
+        await prisma.$disconnect()
+    })
+    .catch(async (e) => {
+        console.error(e)
+        await prisma.$disconnect()
+        process.exit(1)
+    })
+
+export {
+    main
 }
-
-export default Database;

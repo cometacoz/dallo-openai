@@ -13,15 +13,18 @@ import cors from 'cors';
 
 // classes
 import ChatController from './controllers/chatController.js';
-import Database from './database/database.js';
+import UserController from './controllers/userController.js';
+import { main } from './database/database.js';
 import swaggerOptions from './swagger-jsdoc.js';
 
 // routes
-import { getUser } from './routes/users.routes.js';
-import { firstConversation } from './routes/chat.routes.js';
+import { signInUser, signUpUser } from './routes/users.routes.js';
+import { conversation } from './routes/chat.routes.js';
+
 
 
 const app = express();
+main();
 
 const port = process.env.PORT || 3000;
 const corsOptions = {
@@ -36,7 +39,8 @@ const container = createContainer({ injectionMode: InjectionMode.PROXY });
 
 // Register our dependencies in the container;
 container.register({
-    database: asClass(Database).singleton(),
+    // database: asClass(Database), //.singleton(),
+    UserController: asClass(UserController),
     ChatController: asClass(ChatController)
 });
 
@@ -55,9 +59,9 @@ app.use(scopePerRequest(container));
 
 
 // routes
-app.post('/conversation/', (req, res) => firstConversation(req, res));
-
-
+app.post('/users/signin', (req, res) => signInUser(req, res));
+app.post('/users/signup', (req, res) => signUpUser(req, res));
+app.post('/conversation/', (req, res) => conversation(req, res));
 
 // route of swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
