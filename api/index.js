@@ -64,7 +64,7 @@ app.post('/users/signup', (req, res) => signUpUser(req, res));
 app.post('/conversation/', (req, res) => conversation(req, res));
 
 // route of swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 app.listen(port, () => {
